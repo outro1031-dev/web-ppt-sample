@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#F0F1F2" />
+<meta name="theme-color" content="#EDEEEF" />
 <title>웹 PPT 샘플 · 발표는 화면에서, 결과는 인쇄에서</title>
 <style>
   /* ============================================================
@@ -12,8 +12,8 @@
      ============================================================ */
 
   :root{
-    --canvas:       #F0F1F2;   /* deck surround — neutral, no warm cast */
-    --paper:        #FAFAFA;   /* slide canvas */
+    --canvas:       #EDEEEF;   /* deck surround — neutral, no warm cast */
+    --paper:        #F8F9FA;   /* slide canvas — barely grey, no warm cast */
     --paper-2:      #FFFFFF;
     --card:         #FFFFFF;   /* every box on the slide */
     --card-line:    #F2F2F2;
@@ -30,11 +30,11 @@
     --up:           #4E5E69;
     --radius:       16px;
     --card-shadow:
-      0 16px 40px -8px rgba(15,23,42,.06),
-      0 4px 12px -2px rgba(15,23,42,.03);
+      0 18px 44px -10px rgba(15,23,42,.07),
+      0 6px 16px -4px rgba(15,23,42,.035);
     --card-shadow-hover:
-      0 24px 52px -10px rgba(15,23,42,.10),
-      0 6px 16px -3px rgba(15,23,42,.05);
+      0 26px 56px -12px rgba(15,23,42,.11),
+      0 8px 20px -4px rgba(15,23,42,.05);
     --ease:         cubic-bezier(.22,.61,.36,1);
     --chrome-h:     104px;
     --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
@@ -475,7 +475,7 @@
   .deck:fullscreen .chrome{
     position:fixed; left:0; right:0; bottom:0;
     height:86px; padding:0 clamp(14px,3vw,52px);
-    background:linear-gradient(0deg, rgba(240,241,242,.97), rgba(240,241,242,0));
+    background:linear-gradient(0deg, rgba(237,238,239,.97), rgba(237,238,239,0));
     opacity:0; pointer-events:none;
   }
   .deck:fullscreen:hover .chrome,
