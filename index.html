@@ -3,30 +3,38 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#FFFFFF" />
+<meta name="theme-color" content="#F0F1F2" />
 <title>웹 PPT 샘플 · 발표는 화면에서, 결과는 인쇄에서</title>
 <style>
   /* ============================================================
      WEB DECK — single-file 16:9 presentation template
-     palette : white paper / pale blue-grey cards / slate accent
+     palette : pale neutral-grey paper / white cards / slate accent
      ============================================================ */
 
   :root{
-    --paper:        #FFFFFF;
+    --canvas:       #F0F1F2;   /* deck surround — neutral, no warm cast */
+    --paper:        #FAFAFA;   /* slide canvas */
     --paper-2:      #FFFFFF;
-    --card:         #F3F6F9;
-    --ink:          #16191C;
-    --ink-soft:     #3E474D;
-    --muted:        #6B767E;
-    --muted-2:      #9AA5AC;
-    --line:         #E4EBF1;
-    --line-strong:  #D7E1E8;
-    --sky:          #7E9FB2;
-    --sky-deep:     #456A7E;
-    --sky-mid:      #5C7D91;
-    --sky-soft:     #DFE8EF;
-    --sand:         #D6CEBF;
-    --up:           #587A72;
+    --card:         #FFFFFF;   /* every box on the slide */
+    --card-line:    #F2F2F2;
+    --ink:          #16181A;
+    --ink-soft:     #3B4045;
+    --muted:        #70757A;
+    --muted-2:      #9EA2A7;
+    --line:         #EDEEEF;
+    --line-strong:  #E1E2E4;
+    --accent:       #44505B;   /* slate — the single point colour */
+    --accent-mid:   #6C7A85;
+    --accent-soft:  #ECEEF0;
+    --track:        #EDEFF1;
+    --up:           #4E5E69;
+    --radius:       16px;
+    --card-shadow:
+      0 16px 40px -8px rgba(15,23,42,.06),
+      0 4px 12px -2px rgba(15,23,42,.03);
+    --card-shadow-hover:
+      0 24px 52px -10px rgba(15,23,42,.10),
+      0 6px 16px -3px rgba(15,23,42,.05);
     --ease:         cubic-bezier(.22,.61,.36,1);
     --chrome-h:     104px;
     --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
@@ -37,7 +45,7 @@
 
   html, body{
     margin:0; padding:0; height:100%;
-    background:#F7F9FB;
+    background:var(--canvas);
     color:var(--ink);
     font-family:var(--sans);
     -webkit-font-smoothing:antialiased;
@@ -54,7 +62,7 @@
     height:100dvh;
     display:grid;
     grid-template-rows:1fr auto;
-    background:#F7F9FB;
+    background:var(--canvas);
   }
 
   .viewport{
@@ -78,11 +86,12 @@
     aspect-ratio:16 / 9;
     container-type:inline-size;
     background:var(--paper);
-    border-radius:5px;
+    border-radius:var(--radius);
     overflow:hidden;
     box-shadow:
-      0 24px 64px -44px rgba(22,25,28,.34),
-      0 0 0 1px rgba(22,25,28,.06);
+      0 24px 60px -34px rgba(17,20,24,.20),
+      0 2px 8px -4px rgba(17,20,24,.05),
+      0 0 0 1px rgba(17,20,24,.04);
   }
 
   /* ---------------- slides ---------------- */
@@ -177,7 +186,7 @@
     position:relative; z-index:1;
   }
   .mark{ display:inline-flex; align-items:center; gap:.7cqw; }
-  .mark i{ width:.46cqw; height:.46cqw; background:var(--sky-deep); border-radius:50%; display:inline-block; }
+  .mark i{ width:.46cqw; height:.46cqw; background:var(--accent); border-radius:50%; display:inline-block; }
 
   .cov-main{ position:relative; z-index:1; }
   .cov-main h1{
@@ -186,7 +195,7 @@
     letter-spacing:-.045em;
     font-weight:650;
   }
-  .cov-main h1 .accent{ color:var(--sky-deep); }
+  .cov-main h1 .accent{ color:var(--accent); }
   .cov-main .lede{
     margin-top:2.4cqw;
     max-width:38cqw;
@@ -208,7 +217,7 @@
     flex:1;
     display:grid;
     grid-template-columns:repeat(3, 1fr);
-    gap:1.5cqw;
+    gap:1.75cqw;
     min-height:0;
     align-content:center;
   }
@@ -221,10 +230,12 @@
     gap:1.6cqw;
     padding:3.9cqw 2.6cqw 4.1cqw;
     background:var(--card);
-    border-radius:.9cqw;
-    transition:background-color .4s var(--ease);
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    box-shadow:var(--card-shadow);
+    transition:box-shadow .45s var(--ease), border-color .45s var(--ease);
   }
-  .card:hover{ background:#EDF2F7; }
+  .card:hover{ box-shadow:var(--card-shadow-hover); border-color:#ECECEC; }
 
   .card h3{ font-size:1.95cqw; line-height:1.4; letter-spacing:-.02em; }
   .card p{
@@ -236,12 +247,14 @@
   .kpis{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
-    gap:1.1cqw;
-    margin-bottom:1.1cqw;
+    gap:1.25cqw;
+    margin-bottom:1.25cqw;
   }
   .kpi{
     background:var(--card);
-    border-radius:.9cqw;
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    box-shadow:var(--card-shadow);
     padding:1.45cqw 1.6cqw 1.35cqw;
     display:flex; flex-direction:column; gap:.42cqw;
   }
@@ -260,14 +273,16 @@
     flex:1;
     display:grid;
     grid-template-columns:1.62fr 1fr;
-    gap:1.1cqw;
+    gap:1.25cqw;
     min-height:0;
-    overflow:hidden;
+    overflow:visible;
   }
 
   .panel{
     background:var(--card);
-    border-radius:.9cqw;
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    box-shadow:var(--card-shadow);
     padding:1.7cqw 1.8cqw;
     display:flex; flex-direction:column;
     min-height:0;
@@ -286,8 +301,8 @@
   .panel-side{ gap:1cqw; overflow:hidden; }
   .donut-row{ display:flex; align-items:center; gap:1.6cqw; }
   .donut{ width:8.6cqw; height:8.6cqw; flex:0 0 auto; }
-  .donut .track{ fill:none; stroke:var(--sky-soft); stroke-width:11; }
-  .donut .meter{ fill:none; stroke:var(--sky-mid); stroke-width:11; stroke-linecap:round; }
+  .donut .track{ fill:none; stroke:var(--accent-soft); stroke-width:11; }
+  .donut .meter{ fill:none; stroke:var(--accent); stroke-width:11; stroke-linecap:round; }
   .donut-num{ font-size:25px; font-weight:600; fill:var(--ink); letter-spacing:-.04em; }
   .donut-cap{ font-size:11px; fill:var(--muted); letter-spacing:.02em; }
   .donut-list{ display:flex; flex-direction:column; gap:.65cqw; flex:1; }
@@ -300,8 +315,8 @@
     font-size:.85cqw; line-height:1.4; color:var(--muted); margin-bottom:.45cqw;
   }
   .prog-item .row b{ color:var(--ink-soft); font-weight:600; font-variant-numeric:tabular-nums; }
-  .track-bar{ height:4px; background:var(--sky-soft); border-radius:99px; overflow:hidden; }
-  .track-bar i{ display:block; height:100%; background:var(--sky-mid); border-radius:99px; }
+  .track-bar{ height:4px; background:var(--track); border-radius:99px; overflow:hidden; }
+  .track-bar i{ display:block; height:100%; background:var(--accent); border-radius:99px; }
 
   /* ---------------- 04 · timeline ---------------- */
 
@@ -342,14 +357,15 @@
   .step{ position:relative; display:flex; flex-direction:column; }
   .step-dot{
     width:2.3cqw; height:2.3cqw; border-radius:50%;
-    background:var(--paper);
+    background:var(--card);
     border:1px solid var(--line-strong);
+    box-shadow:0 4px 12px -6px rgba(15,23,42,.16);
     display:grid; place-items:center;
-    font-size:.78cqw; font-weight:600; color:var(--sky-deep);
+    font-size:.78cqw; font-weight:600; color:var(--accent);
     font-variant-numeric:tabular-nums;
-    transition:background .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease);
+    transition:background .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease), box-shadow .4s var(--ease);
   }
-  .step:hover .step-dot{ background:var(--sky-deep); border-color:var(--sky-deep); color:#fff; }
+  .step:hover .step-dot{ background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 8px 18px -8px rgba(15,23,42,.34); }
   .step-body{ padding-top:2.1cqw; padding-right:1.2cqw; }
   .step h3{ font-size:1.42cqw; letter-spacing:-.02em; margin-bottom:.8cqw; line-height:1.35; }
   .step p{ margin:0; font-size:.98cqw; line-height:1.75; color:var(--muted); word-break:keep-all; }
@@ -375,16 +391,18 @@
   .chip-link{
     display:inline-flex; align-items:center; gap:.6cqw;
     padding:.82cqw 1.15cqw;
-    border:1px solid var(--line-strong);
-    border-radius:3px;
-    background:transparent;
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    background:var(--card);
+    box-shadow:0 8px 20px -12px rgba(15,23,42,.14), 0 2px 6px -2px rgba(15,23,42,.04);
     font-size:.96cqw; color:var(--ink-soft);
     text-decoration:none;
-    transition:background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+    transition:box-shadow .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
     cursor:pointer;
   }
   .chip-link:hover{
-    background:var(--card); border-color:#C8D6DF; color:var(--ink);
+    box-shadow:0 14px 28px -14px rgba(15,23,42,.20), 0 3px 8px -3px rgba(15,23,42,.06);
+    border-color:#EBEBEB; color:var(--ink);
   }
   .chip-link svg{ width:.95cqw; height:.95cqw; stroke:currentColor; fill:none; stroke-width:1.5; }
   .closing-foot{
@@ -415,7 +433,7 @@
     width:26px; height:2px; background:var(--line-strong); border-radius:99px;
     transition:background .4s var(--ease), width .4s var(--ease);
   }
-  .bar.on{ background:var(--sky-deep); }
+  .bar.on{ background:var(--accent); }
   .chrome-title{
     font-size:12px; letter-spacing:.02em; color:var(--muted);
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
@@ -434,7 +452,7 @@
     transition:background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), opacity .25s;
   }
   .btn svg{ width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
-  .btn:hover{ background:#EDF2F7; border-color:#C8D6DF; color:var(--ink); }
+  .btn:hover{ background:#F1F2F3; border-color:#DADCDE; color:var(--ink); }
   .btn:active{ transform:translateY(1px); }
   .btn:disabled{ opacity:.32; cursor:default; }
   .btn:disabled:hover{ background:transparent; border-color:var(--line-strong); color:var(--ink-soft); }
@@ -449,15 +467,15 @@
     border:1px solid var(--line-strong); border-bottom-width:2px;
     border-radius:4px; padding:1px 5px; margin:0 1px;
   }
-  :focus-visible{ outline:2px solid var(--sky-deep); outline-offset:3px; border-radius:4px; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
 
   /* fullscreen: stage takes the whole screen, chrome returns on hover */
-  .deck:fullscreen{ background:#F7F9FB; grid-template-rows:1fr; --chrome-h:0px; }
+  .deck:fullscreen{ background:var(--canvas); grid-template-rows:1fr; --chrome-h:0px; }
   .deck:fullscreen .viewport{ --vp-pad:0px; padding:0; }
   .deck:fullscreen .chrome{
     position:fixed; left:0; right:0; bottom:0;
     height:86px; padding:0 clamp(14px,3vw,52px);
-    background:linear-gradient(0deg, rgba(247,249,251,.97), rgba(247,249,251,0));
+    background:linear-gradient(0deg, rgba(240,241,242,.97), rgba(240,241,242,0));
     opacity:0; pointer-events:none;
   }
   .deck:fullscreen:hover .chrome,
@@ -483,8 +501,8 @@
       aspect-ratio:auto;
       height:calc(100vh - var(--chrome-h) - 10px);
       height:calc(100dvh - var(--chrome-h) - 10px);
-      border-radius:8px;
-      box-shadow:0 10px 30px -22px rgba(22,25,28,.5), 0 0 0 1px rgba(22,25,28,.07);
+      border-radius:var(--radius);
+      box-shadow:0 14px 34px -22px rgba(17,20,24,.30), 0 0 0 1px rgba(17,20,24,.04);
     }
     .slide{ overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
     .slide-pad{ height:auto; min-height:100%; padding:26px 22px 30px; }
@@ -507,19 +525,19 @@
 
     /* cards */
     .cards{ grid-template-columns:1fr; gap:10px; align-content:start; }
-    .card{ padding:20px 18px; border-radius:10px; gap:8px; justify-content:flex-start; }
+    .card{ padding:20px 18px; border-radius:var(--radius); gap:8px; justify-content:flex-start; }
     .card h3{ font-size:16px; }
     .card p{ font-size:12.5px; }
 
     /* metrics */
     .kpis{ grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px; }
-    .kpi{ padding:13px 14px; border-radius:10px; }
+    .kpi{ padding:13px 14px; border-radius:var(--radius); }
     .kpi-label{ font-size:9.5px; letter-spacing:.1em; }
     .kpi-value{ font-size:24px; }
     .kpi-value span{ font-size:11px; }
     .kpi-delta{ font-size:10px; }
     .charts{ grid-template-columns:1fr; gap:8px; }
-    .panel{ padding:15px 16px; border-radius:10px; }
+    .panel{ padding:15px 16px; border-radius:var(--radius); }
     .panel-title{ font-size:11.5px; }
     .panel-note{ font-size:9px; }
     .donut{ width:88px; height:88px; }
@@ -615,7 +633,11 @@
     }
     .slide:last-of-type{ break-after:auto; page-break-after:auto; }
     .slide .rv{ opacity:1 !important; transform:none !important; transition:none !important; animation:none !important; }
-    .card:hover, .chip-link:hover{ transform:none !important; box-shadow:none !important; }
+    .card, .kpi, .panel, .chip-link{
+      box-shadow:0 10px 26px -14px rgba(15,23,42,.16) !important;
+      border-color:#EDEDED !important;
+    }
+    .card:hover, .chip-link:hover{ transform:none !important; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -723,19 +745,19 @@
               <div class="chart-wrap">
                 <svg viewBox="0 0 480 200" role="img" aria-label="4월 8.2천 명에서 11월 24.8천 명으로 증가한 월별 방문자 막대 차트">
                   <!-- grid -->
-                  <g stroke="#E8EEF3" stroke-width="1">
+                  <g stroke="#EFEFF0" stroke-width="1">
                     <line x1="36" y1="20" x2="470" y2="20" />
                     <line x1="36" y1="89" x2="470" y2="89" />
                     <line x1="36" y1="158" x2="470" y2="158" />
                   </g>
-                  <g fill="#9AA5AC" font-size="8.5" text-anchor="end" font-family="inherit">
+                  <g fill="#A2A6AB" font-size="8.5" text-anchor="end" font-family="inherit">
                     <text x="30" y="23">32</text>
                     <text x="30" y="92">16</text>
                     <text x="30" y="161">0</text>
                   </g>
 
                   <!-- bars -->
-                  <g fill="#CFDEE8">
+                  <g fill="#E3E4E6">
                     <rect x="50"  y="123" width="26" height="35"  rx="2" />
                     <rect x="104" y="113" width="26" height="45"  rx="2" />
                     <rect x="159" y="117" width="26" height="41"  rx="2" />
@@ -743,13 +765,13 @@
                     <rect x="267" y="94"  width="26" height="64"  rx="2" />
                     <rect x="321" y="98"  width="26" height="60"  rx="2" />
                     <rect x="376" y="78"  width="26" height="80"  rx="2" />
-                    <rect x="430" y="51"  width="26" height="107" rx="2" fill="#5C7D91" />
+                    <rect x="430" y="51"  width="26" height="107" rx="2" fill="#44505B" />
                   </g>
 
-                  <text x="443" y="44" font-size="9.5" text-anchor="middle" fill="#456A7E" font-weight="600" font-family="inherit">24.8</text>
+                  <text x="443" y="44" font-size="9.5" text-anchor="middle" fill="#44505B" font-weight="600" font-family="inherit">24.8</text>
 
                   <!-- x labels -->
-                  <g fill="#9AA5AC" font-size="8.5" text-anchor="middle" font-family="inherit">
+                  <g fill="#A2A6AB" font-size="8.5" text-anchor="middle" font-family="inherit">
                     <text x="63"  y="176">4월</text>
                     <text x="117" y="176">5월</text>
                     <text x="172" y="176">6월</text>
