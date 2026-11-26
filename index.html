@@ -215,7 +215,8 @@
     position:relative;
     display:flex;
     flex-direction:column;
-    gap:1.5cqw;
+    justify-content:center;
+    gap:1.4cqw;
     padding:2.6cqw 2.3cqw;
     background:var(--card);
     border-radius:.9cqw;
@@ -307,7 +308,8 @@
     min-height:0;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
+    padding-top:3.4cqw;
   }
   .steps{
     position:relative;
@@ -320,7 +322,7 @@
     list-style:none;
   }
   .steps-note{
-    margin:2.6cqw 0 0;
+    margin:auto 0 0;
     padding-top:1.4cqw;
     border-top:1px solid var(--line);
     font-size:.95cqw;
@@ -504,7 +506,7 @@
 
     /* cards */
     .cards{ grid-template-columns:1fr; gap:10px; }
-    .card{ padding:20px 18px; border-radius:10px; gap:8px; }
+    .card{ padding:20px 18px; border-radius:10px; gap:8px; justify-content:flex-start; }
     .card h3{ font-size:16px; }
     .card p{ font-size:12.5px; }
 
@@ -681,7 +683,7 @@
       </section>
 
       <!-- ================= 03 · METRICS ================= -->
-      <section class="slide" id="s3" data-title="Metrics" aria-label="3장 지표" aria-hidden="true">
+      <section class="slide" id="s3" data-title="지표" aria-label="3장 지표" aria-hidden="true">
         <div class="slide-pad">
           <header class="slide-head rv" style="--i:0">
             <h2>숫자는 이렇게<br />보여주세요</h2>
@@ -732,7 +734,7 @@
                   </g>
 
                   <!-- bars -->
-                  <g fill="#D8E3EB">
+                  <g fill="#D5E1EA">
                     <rect x="50"  y="123" width="26" height="35"  rx="2" />
                     <rect x="104" y="113" width="26" height="45"  rx="2" />
                     <rect x="159" y="117" width="26" height="41"  rx="2" />
@@ -801,7 +803,7 @@
       </section>
 
       <!-- ================= 04 · PROCESS ================= -->
-      <section class="slide" id="s4" data-title="Process" aria-label="4장 프로세스" aria-hidden="true">
+      <section class="slide" id="s4" data-title="프로세스" aria-label="4장 프로세스" aria-hidden="true">
         <div class="slide-pad">
           <header class="slide-head rv" style="--i:0">
             <h2>네 단계로 끝내는<br />제작 흐름</h2>
